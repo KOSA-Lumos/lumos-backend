@@ -160,3 +160,7 @@ application.properties
 database.properties
 web.xml
 pom.xml
+
+# intelliJ
+.idea/
+lumos-backend.iml
