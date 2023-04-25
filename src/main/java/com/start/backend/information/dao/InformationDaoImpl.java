@@ -1,4 +1,4 @@
-package com.start.backend.accounts.dao;
+package com.start.backend.information.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
@@ -6,11 +6,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.User;
 
 
 @Repository
-public class AccountsDaoImpl implements AccountsDao {
+public class InformationDaoImpl implements InformationDao {
 
 	private Logger log = LogManager.getLogger("case3");
 
@@ -18,11 +19,13 @@ public class AccountsDaoImpl implements AccountsDao {
 	private SqlSession session;
 
 	@Override
-	public User addUser(String userId) {
+	public Information getInformation(String center_num) {
 		
-		User user = session.selectOne("User.addUser", userId);
+		log.debug("getInformation() 메소드 실행 중!");
 		
-		return user;
+		Information information = session.selectOne("Information.getInformation", center_num);
+		
+		return information;
 	}
 	
 	@Override

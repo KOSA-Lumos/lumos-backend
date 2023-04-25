@@ -1,10 +1,11 @@
-package com.start.backend.kindergarten.service;
+package com.start.backend.information.service;
 
+import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.User;
 
-public interface KindergartenService {
+public interface InformationService {
 
-	User getUser(String userId);
+	Information getInformation(String center_num);
 
 	User addUser(String userId);
 

@@ -1,11 +1,12 @@
-package com.start.backend.admin.dao;
+package com.start.backend.information.dao;
 
+import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.User;
 
 
-public interface AdminDao {
+public interface InformationDao {
 
-	User addUser(String userId);
+	Information getInformation(String center_num);
 
 	User getUser(String userId);
 	
