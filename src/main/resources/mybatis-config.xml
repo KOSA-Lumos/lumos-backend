@@ -10,5 +10,6 @@
 	 
 	<typeAliases>
 	 	<typeAlias type="com.start.backend.transactionSample.vo.User" alias="User" />
+	 	<typeAlias type="com.start.backend.information.vo.Information" alias="Information" />
 	</typeAliases>
 </configuration>

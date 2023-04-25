@@ -12,16 +12,12 @@ import com.start.backend.transactionSample.vo.User;
 
 
 @Service
-@PropertySource("classpath:/config/profileImageDirectory.properties")
 public class UserCRUDService implements UserService {
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
 	private UserDao userDao;
 	
-	@Autowired
-	private User user;
-
 	@Transactional
 	@Override
 	public User getUser(String userId) {
