@@ -156,5 +156,7 @@ MANIFEST.MF
 pom.properties
 log4j.xml
 log4j2.xml
+application.properties
 database.properties
 web.xml
+pom.xml
