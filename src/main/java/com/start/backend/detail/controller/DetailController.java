@@ -1,11 +1,12 @@
-package com.start.backend.grade.controller;
+package com.start.backend.detail.controller;
 
+import com.start.backend.detail.vo.Detail;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.vo.Information;
 
-public interface GradeController {
+public interface DetailController {
 
-	Grade getGrade(String center_num);
+	Detail getDetail(String center_num);
 
 	Information addUser(String userId);
 

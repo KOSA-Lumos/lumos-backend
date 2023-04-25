@@ -1,11 +1,12 @@
 package com.start.backend.grade.service;
 
+import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.User;
 
 public interface GradeService {
 
-	Information getInformation(String center_num);
+	Grade getGrade(String center_num);
 
 	User addUser(String userId);
 

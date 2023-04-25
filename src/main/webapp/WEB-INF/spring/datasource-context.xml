@@ -26,6 +26,8 @@
 			<list>
 				<value>classpath:mappers/UserMapper.xml</value>
 				<value>classpath:mappers/InformationMapper.xml</value>
+				<value>classpath:mappers/GradeMapper.xml</value>
+				<value>classpath:mappers/DetailMapper.xml</value>
 			</list>
 		</property>
 
