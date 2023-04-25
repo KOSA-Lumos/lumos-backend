@@ -1,4 +1,4 @@
-package com.start.backend.information.controller;
+package com.start.backend.grade.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,14 +20,14 @@ import com.start.backend.transactionSample.vo.User;
 @RestController
 @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", allowedHeaders = "Content-Type")
 @RequestMapping(produces = "application/json; charset=utf-8")
-public class InformationCRUDController implements InformationController {
+public class GradeCRUDController implements GradeController {
 
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
 	private InformationService informationService;
 
-	public InformationCRUDController(InformationService informationService) {
+	public GradeCRUDController(InformationService informationService) {
 		this.informationService = informationService;
 	}
 
