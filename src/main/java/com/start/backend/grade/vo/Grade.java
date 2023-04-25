@@ -9,7 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Grade {
 
-	private int childcare_eval_num;
+	private int center_num;
+	private String center_name;
+	private String center_state;
+	private String center_city;
+	private int childcare_eval_regionnum;
 	private String childcare_eval_grade;
 	private String childcare_eval_communication;
 	private String childcare_eval_environment;

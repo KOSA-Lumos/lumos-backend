@@ -1,13 +1,14 @@
-package com.start.backend.grade.dao;
+package com.start.backend.detail.dao;
 
+import com.start.backend.detail.vo.Detail;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.User;
 
 
-public interface GradeDao {
+public interface DetailDao {
 
-	Grade getGrade(String center_num);
+	Detail getDetail(String center_num);
 
 	User getUser(String userId);
 	
@@ -16,6 +17,5 @@ public interface GradeDao {
 	void updateUser(String userId) throws Exception;
 
 	void deleteUser(String userId) throws Exception;
-
 
 }

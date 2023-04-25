@@ -21,7 +21,7 @@ public class InformationDaoImpl implements InformationDao {
 	@Override
 	public Information getInformation(String center_num) {
 		
-		log.debug("getInformation() 메소드 실행 중!");
+		log.debug("getInformationDao() 메소드 실행 중!");
 		
 		Information information = session.selectOne("Information.getInformation", center_num);
 		

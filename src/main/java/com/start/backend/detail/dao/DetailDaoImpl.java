@@ -1,4 +1,4 @@
-package com.start.backend.grade.dao;
+package com.start.backend.detail.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
@@ -6,13 +6,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.start.backend.detail.vo.Detail;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.User;
 
 
 @Repository
-public class GradeDaoImpl implements GradeDao {
+public class DetailDaoImpl implements DetailDao {
 
 	private Logger log = LogManager.getLogger("case3");
 
@@ -20,13 +21,13 @@ public class GradeDaoImpl implements GradeDao {
 	private SqlSession session;
 
 	@Override
-	public Grade getGrade(String center_num) {
+	public Detail getDetail(String center_num) {
 		
-		log.debug("getGrade() 메소드 실행 중!");
+		log.debug("getDetail() 메소드 실행 중!");
 		
-		Grade grade = session.selectOne("Grade.getGrade", center_num);
+		Detail detail = session.selectOne("Detail.getDetail", center_num);
 		
-		return grade;
+		return detail;
 	}
 	
 	@Override

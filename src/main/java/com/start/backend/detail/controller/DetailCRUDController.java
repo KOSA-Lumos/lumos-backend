@@ -1,4 +1,4 @@
-package com.start.backend.grade.controller;
+package com.start.backend.detail.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.start.backend.detail.service.DetailService;
+import com.start.backend.detail.vo.Detail;
 import com.start.backend.grade.service.GradeService;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.service.InformationService;
@@ -22,24 +24,24 @@ import com.start.backend.transactionSample.vo.User;
 @RestController
 @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", allowedHeaders = "Content-Type")
 @RequestMapping(produces = "application/json; charset=utf-8")
-public class GradeCRUDController implements GradeController {
+public class DetailCRUDController implements DetailController {
 
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
-	private GradeService gradeService;
+	private DetailService detailService;
 
-	public GradeCRUDController(GradeService gradeService) {
-		this.gradeService = gradeService;
+	public DetailCRUDController(DetailService detailService) {
+		this.detailService = detailService;
 	}
 
 	@Override
-	@GetMapping(value="/kindergartendetail/{center_num}/grade")
-	public Grade getGrade(@PathVariable String center_num) {
+	@GetMapping(value="/kindergartendetail/{center_num}/detail")
+	public Detail getDetail(@PathVariable String center_num) {
 		
-		Grade grade = gradeService.getGrade(center_num);
+		Detail detail = detailService.getDetail(center_num);
 		
-		return grade;
+		return detail;
 	}
 
 	@Override
