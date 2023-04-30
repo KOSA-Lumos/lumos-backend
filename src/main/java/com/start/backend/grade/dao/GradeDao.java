@@ -2,14 +2,14 @@ package com.start.backend.grade.dao;
 
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.vo.Information;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.vo.Sample;
 
 
 public interface GradeDao {
 
 	Grade getGrade(String center_num);
 
-	User getUser(String userId);
+	Sample getUser(String userId);
 	
 	void insertUser(String userId) throws Exception;
 

@@ -13,8 +13,8 @@ import com.start.backend.grade.dao.GradeDao;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.dao.InformationDao;
 import com.start.backend.information.vo.Information;
-import com.start.backend.transactionSample.dao.UserDao;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.dao.SampleDao;
+import com.start.backend.transactionSample.vo.Sample;
 
 
 @Service
@@ -34,7 +34,7 @@ public class DetailCRUDService implements DetailService {
 	}
 
 	@Override
-	public User addUser(String userId) {
+	public Sample addUser(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -53,8 +53,8 @@ public class DetailCRUDService implements DetailService {
 	
 //	@Transactional
 //	@Override
-//	public User addUser(String userId) {
-//		User user = userDao.addUser(userId);
+//	public Sample addUser(String userId) {
+//		Sample user = userDao.addUser(userId);
 //		return user;
 //	}
 //	

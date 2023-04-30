@@ -40,7 +40,7 @@ public class SampleControllerImpl implements SampleController {
 	
 	// GET methods
 	@Override
-	@GetMapping(value="/sample/list/{sampleId}")
+	@GetMapping(value="/sample/list/{sampleName}")
 	public String getSampleListByCondition(@PathVariable String sampleName, String condition) {
 		// TODO Auto-generated method stub
 		System.out.println("@@ getSampleListByCondition 실행");
