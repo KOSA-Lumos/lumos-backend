@@ -18,8 +18,7 @@ import com.start.backend.grade.service.GradeService;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.service.InformationService;
 import com.start.backend.information.vo.Information;
-import com.start.backend.transactionSample.service.UserService;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.service.SampleService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", allowedHeaders = "Content-Type")

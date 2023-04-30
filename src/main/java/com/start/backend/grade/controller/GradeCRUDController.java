@@ -16,8 +16,8 @@ import com.start.backend.grade.service.GradeService;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.service.InformationService;
 import com.start.backend.information.vo.Information;
-import com.start.backend.transactionSample.service.UserService;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.service.SampleService;
+import com.start.backend.transactionSample.vo.Sample;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", allowedHeaders = "Content-Type")
@@ -68,9 +68,9 @@ public class GradeCRUDController implements GradeController {
 	
 //	@Override
 //	@PostMapping(value="/user")
-//	public User addUser(@PathVariable String userId) {
+//	public Sample addUser(@PathVariable String userId) {
 //		
-//		User user = userService.addUser(userId);
+//		Sample user = userService.addUser(userId);
 //		
 //		return user;
 //	}

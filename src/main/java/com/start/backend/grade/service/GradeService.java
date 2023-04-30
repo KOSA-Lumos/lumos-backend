@@ -2,13 +2,13 @@ package com.start.backend.grade.service;
 
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.vo.Information;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.vo.Sample;
 
 public interface GradeService {
 
 	Grade getGrade(String center_num);
 
-	User addUser(String userId);
+	Sample addUser(String userId);
 
 	void updateUser(String userId) throws Exception;
 

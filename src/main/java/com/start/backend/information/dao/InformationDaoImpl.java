@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.start.backend.information.vo.Information;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.vo.Sample;
 
 
 @Repository
@@ -29,9 +29,9 @@ public class InformationDaoImpl implements InformationDao {
 	}
 	
 	@Override
-	public User getUser(String userId) {
+	public Sample getUser(String userId) {
 		
-		User user = session.selectOne("User.getUser", userId);
+		Sample user = session.selectOne("Sample.getUser", userId);
 		
 		return user;
 	}
@@ -47,21 +47,21 @@ public class InformationDaoImpl implements InformationDao {
 	@Override
 	public void insertUser(String userId) throws Exception {
 		
-		session.insert("User.insertUser", userId);
+		session.insert("Sample.insertUser", userId);
 		
 	}
 	
 	@Override
 	public void updateUser(String userId) throws Exception {
 		
-		session.update("User.updateUser", userId);
+		session.update("Sample.updateUser", userId);
 		
 	}
 	
 	@Override
 	public void deleteUser(String userId) throws Exception {
 		
-		session.delete("User.deleteUser", userId);
+		session.delete("Sample.deleteUser", userId);
 		
 	}
 	
