@@ -7,42 +7,42 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.start.backend.transactionSample.dao.UserDao;
-import com.start.backend.transactionSample.vo.User;
+import com.start.backend.transactionSample.dao.SampleDao;
+import com.start.backend.transactionSample.vo.Sample;
 
 
 @Service
-public class UserCRUDService implements UserService {
+public class SampleServiceImpl implements SampleService {
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
-	private UserDao userDao;
+	private SampleDao userDao;
 	
 	@Transactional
 	@Override
-	public User getUser(String userId) {
-		User user = userDao.getUser(userId);
+	public Sample getSample(String userId) {
+		Sample user = userDao.getSample(userId);
 		return user;
 	}
 	
 	@Transactional
 	@Override
-	public User addUser(String userId) {
-		User user = userDao.addUser(userId);
+	public Sample addSample(String userId) {
+		Sample user = userDao.addSample(userId);
 		return user;
 	}
 	
 	@Transactional
 	@Override
-	public void updateUser(String userId) throws Exception {
+	public void updateSample(String userId) throws Exception {
 		
-		userDao.updateUser(userId);
+		userDao.updateSample(userId);
 	}
 	
 	@Transactional
 	@Override
-	public void deleteUser(String userId) throws Exception {
+	public void deleteSample(String userId) throws Exception {
 		
-		userDao.deleteUser(userId);
+		userDao.deleteSample(userId);
 	}
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Sample">
+	<select id="addUser" parameterType="String" resultType="Sample">
+		SELECT *
+		FROM user
+		WHERE userId = #{userId}
+	</select>
+
+	<select id="getUser" parameterType="String" resultType="Sample">
+		SELECT *
+		FROM user
+		WHERE userId = #{userId}
+	</select>
+
+	<insert id="insertUser" parameterType="Sample">
+		INSERT INTO user (userId,
+		userPw, userName, nickName,
+		phone)
+		VALUES (#{userId}, #{userPw},
+		#{userName}, #{nickName},
+		#{phone})
+	</insert>
+
+	<update id="updateUser" parameterType="Sample">
+		UPDATE user
+		SET userPw =
+		#{userPw},
+		userName =
+		#{userName},
+		nickName = #{nickName},
+		phone =
+		#{phone},
+		profileImage =
+		#{profileImage}
+		WHERE userId = #{userId} AND
+		deleteDate IS NULL;
+	</update>
+
+	<delete id="deleteUser" parameterType="Sample">
+		DELETE FROM Preference WHERE userId = #{userId}
+	</delete>
+
+
+
+
+</mapper>
