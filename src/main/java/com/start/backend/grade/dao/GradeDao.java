@@ -1,7 +1,6 @@
 package com.start.backend.grade.dao;
 
 import com.start.backend.grade.vo.Grade;
-import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.Sample;
 
 
