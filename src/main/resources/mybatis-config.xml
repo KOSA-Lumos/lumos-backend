@@ -9,10 +9,10 @@
 	 </settings>
 	 
 	<typeAliases>
-	 	<typeAlias type="com.start.backend.transactionSample.vo.User" alias="User" />
 	 	<typeAlias type="com.start.backend.information.vo.Information" alias="Information" />
 	 	<typeAlias type="com.start.backend.grade.vo.Grade" alias="Grade" />
 	 	<typeAlias type="com.start.backend.detail.vo.Detail" alias="Detail" />
 	 	<typeAlias type="com.start.backend.transactionSample.vo.Sample" alias="Sample" />
+	 	<typeAlias type="com.start.backend.user.vo.User" alias="User" />
 	</typeAliases>
 </configuration>
