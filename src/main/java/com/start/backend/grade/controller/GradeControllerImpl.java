@@ -20,16 +20,16 @@ import com.start.backend.transactionSample.service.SampleService;
 import com.start.backend.transactionSample.vo.Sample;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", allowedHeaders = "Content-Type")
+@CrossOrigin(origins = "http://localhost:8079", allowCredentials = "true", allowedHeaders = "Content-Type")
 @RequestMapping(produces = "application/json; charset=utf-8")
-public class GradeCRUDController implements GradeController {
+public class GradeControllerImpl implements GradeController {
 
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
 	private GradeService gradeService;
 
-	public GradeCRUDController(GradeService gradeService) {
+	public GradeControllerImpl(GradeService gradeService) {
 		this.gradeService = gradeService;
 	}
 

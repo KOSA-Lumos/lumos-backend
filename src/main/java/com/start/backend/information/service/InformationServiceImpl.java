@@ -1,4 +1,4 @@
-package com.start.backend.detail.service;
+package com.start.backend.information.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,10 +7,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.start.backend.detail.dao.DetailDao;
-import com.start.backend.detail.vo.Detail;
-import com.start.backend.grade.dao.GradeDao;
-import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.dao.InformationDao;
 import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.dao.SampleDao;
@@ -18,19 +14,20 @@ import com.start.backend.transactionSample.vo.Sample;
 
 
 @Service
-public class DetailCRUDService implements DetailService {
+public class InformationServiceImpl implements InformationService {
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
-	private DetailDao detailDao;
+	private InformationDao informationDao;
 	
 	@Transactional
 	@Override
-	public Detail getDetail(String center_num) {
+	public Information getInformation(String center_num) {
+		log.debug("dsdsdsd");
 		
-		Detail detail = detailDao.getDetail(center_num);
+		Information information = informationDao.getInformation(center_num);
 		
-		return detail;
+		return information;
 	}
 
 	@Override
@@ -53,8 +50,8 @@ public class DetailCRUDService implements DetailService {
 	
 //	@Transactional
 //	@Override
-//	public Sample addUser(String userId) {
-//		Sample user = userDao.addUser(userId);
+//	public User addUser(String userId) {
+//		User user = userDao.addUser(userId);
 //		return user;
 //	}
 //	
