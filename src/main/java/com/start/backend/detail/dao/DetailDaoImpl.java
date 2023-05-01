@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.start.backend.detail.vo.Detail;
-import com.start.backend.grade.vo.Grade;
-import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.vo.Sample;
 
 
