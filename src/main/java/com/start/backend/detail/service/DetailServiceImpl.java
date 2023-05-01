@@ -1,4 +1,4 @@
-package com.start.backend.grade.service;
+package com.start.backend.detail.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +7,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.start.backend.detail.dao.DetailDao;
+import com.start.backend.detail.vo.Detail;
 import com.start.backend.grade.dao.GradeDao;
 import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.dao.InformationDao;
@@ -16,19 +18,19 @@ import com.start.backend.transactionSample.vo.Sample;
 
 
 @Service
-public class GradeCRUDService implements GradeService {
+public class DetailServiceImpl implements DetailService {
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
-	private GradeDao gradeDao;
+	private DetailDao detailDao;
 	
 	@Transactional
 	@Override
-	public Grade getGrade(String center_num) {
+	public Detail getDetail(String center_num) {
 		
-		Grade grade = gradeDao.getGrade(center_num);
+		Detail detail = detailDao.getDetail(center_num);
 		
-		return grade;
+		return detail;
 	}
 
 	@Override

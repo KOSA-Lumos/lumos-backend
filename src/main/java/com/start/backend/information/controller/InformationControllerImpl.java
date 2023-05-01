@@ -1,4 +1,4 @@
-package com.start.backend.detail.controller;
+package com.start.backend.information.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,36 +12,42 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.start.backend.detail.service.DetailService;
-import com.start.backend.detail.vo.Detail;
-import com.start.backend.grade.service.GradeService;
-import com.start.backend.grade.vo.Grade;
 import com.start.backend.information.service.InformationService;
 import com.start.backend.information.vo.Information;
 import com.start.backend.transactionSample.service.SampleService;
+import com.start.backend.transactionSample.vo.Sample;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", allowedHeaders = "Content-Type")
+@CrossOrigin(origins = "http://localhost:8079", allowCredentials = "true", allowedHeaders = "Content-Type")
 @RequestMapping(produces = "application/json; charset=utf-8")
-public class DetailCRUDController implements DetailController {
+public class InformationControllerImpl implements InformationController {
 
 	private Logger log = LogManager.getLogger("case3");
 
 	@Autowired
-	private DetailService detailService;
+	private InformationService informationService;
 
-	public DetailCRUDController(DetailService detailService) {
-		this.detailService = detailService;
+	public InformationControllerImpl(InformationService informationService) {
+		this.informationService = informationService;
 	}
 
 	@Override
-	@GetMapping(value="/kindergartendetail/{center_num}/detail")
-	public Detail getDetail(@PathVariable String center_num) {
+	@GetMapping(value="/kindergartendetail/{center_num}/information")
+	public Information getInformation(@PathVariable String center_num) {
 		
-		Detail detail = detailService.getDetail(center_num);
+		log.debug("ssdfsdf");
+		Information information = informationService.getInformation(center_num);
 		
-		return detail;
+		return information;
 	}
+
+	@Override
+//	@GetMapping(value="/kindergartendetail/{center_num}/information")
+	public Information get() {
+	    Information information = informationService.getInformation("123");
+	    return information;
+	}
+
 
 	@Override
 	public void updateUser(String userId) throws Exception {
@@ -57,12 +63,6 @@ public class DetailCRUDController implements DetailController {
 
 	@Override
 	public Information addUser(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Information get() {
 		// TODO Auto-generated method stub
 		return null;
 	}
