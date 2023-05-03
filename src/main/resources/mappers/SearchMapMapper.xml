@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="SearchMap">
+	
+	<!-- SMapCenter -->
+	<resultMap id="SMapCenterMap" type="SMapCenter">
+		<result property="centerNum" column="center_num" />
+		<result property="centerName" column="center_name" />
+		<result property="centerCategory" column="center_category" />
+		<result property="centerState" column="center_state" />
+		<result property="centerCity" column="center_city" />
+		<result property="centerType" column="center_type" />
+		<result property="centerExtendcare" column="center_extendcare" />
+	</resultMap>
+	
+	<select id="getCenterOne" resultMap="SMapCenterMap">
+		SELECT *
+		FROM center
+		WHERE center_num = #{centerNum}
+	</select>
+	
+	<!-- SMapChildcareEval -->
+	<resultMap id="SMapChildcareEvalMap" type="SMapChildcareEval">
+		<result property="centerNum" column="center_num" />
+		<result property="centerName" column="center_name" />
+		<result property="centerState" column="center_state" />
+		<result property="centerCity" column="center_city" />
+		<result property="childcareEvalRegionnum" column="childcare_eval_regionnum" />
+		<result property="childcareEvalGrade" column="childcare_eval_grade" />
+		<result property="childcareEvalCommunication" column="childcare_eval_communication" />
+		<result property="childcareEvalEnvironment" column="childcare_eval_environment" />
+		<result property="childcareEvalSafety" column="childcare_eval_safety" />
+		<result property="childcareEvalTeacher" column="childcare_eval_teacher" />
+		<result property="childcareEvalDate" column="childcare_eval_date" />
+	</resultMap>
+	
+	<select id="getChildcareEvalOne" resultMap="SMapChildcareEvalMap">
+		SELECT *
+		FROM childcare_eval
+		WHERE center_num = #{centerNum}
+	</select>
+	
+	<!-- SMapChildcareViolation -->
+	<resultMap id="SMapChildcareViolationMap" type="SMapChildcareViolation">
+		<result property="centerNum" column="center_num" />
+		<result property="childcareViolationNum" column="childcare_violation_num" />
+		<result property="childcareViolationName" column="childcare_violation_name" />
+		<result property="childcareViolationState" column="childcare_violation_state" />
+		<result property="childcareViolationCity" column="childcare_violation_city" />
+		<result property="childcareViolationKindtype" column="childcare_violation_kindtype" />
+		<result property="childcareViolationNowmaster" column="childcare_violation_nowmaster" />
+		<result property="childcareViolationNowledger" column="childcare_violation_nowledger" />
+		<result property="childcareViolationMaster" column="childcare_violation_master" />
+		<result property="childcareViolationLedger" column="childcare_violation_ledger" />
+		<result property="childcareViolationAddress" column="childcare_violation_address" />
+		<result property="childcareViolationAct" column="childcare_violation_act" />
+		<result property="childcareViolationContent" column="childcare_violation_content" />
+	</resultMap>
+	
+	<select id="getChildcareViolationOne" resultMap="SMapChildcareViolationMap">
+		SELECT *
+		FROM childcare_violation
+		WHERE center_num = #{centerNum}
+	</select>
+	
+	<!-- SMapKidsdataDetail -->
+	<resultMap id="SMapKidsdataDetailMap" type="SMapKidsdataDetail">
+		<result property="centerNum" column="center_num" />
+		<result property="centerDetailState" column="center_detail_state" />
+		<result property="centerDetailCity" column="center_detail_city" />
+		<result property="centerDetailBame" column="center_detail_name" />
+		<result property="centerDetailClassification" column="center_detail_classification" />
+		<result property="centerDetailCenteropen" column="center_detail_centeropen" />
+		<result property="centerDetailOfficenumber" column="center_detail_officenumber" />
+		<result property="centerDetailAddress" column="center_detail_address" />
+		<result property="centerDetailPhone" column="center_detail_phone" />
+		<result property="centerDetailFax" column="center_detail_fax" />
+		<result property="centerDetailRoomcount" column="center_detail_roomcount" />
+		<result property="centerDetailRoomsize" column="center_detail_roomsize" />
+		<result property="centerDetailPlaygroundcount" column="center_detail_playgroundcount" />
+		<result property="centerDetailTeachercount" column="center_detail_teachercount" />
+		<result property="centerDetailRegularperson" column="center_detail_regularperson" />
+		<result property="centerDetailCurrentperson" column="center_detail_currentperson" />
+		<result property="centerDetailLatitude" column="center_detail_Latitude" />
+		<result property="centerDetailLongitude" column="center_detail_longitude" />
+		<result property="centerDetailVehicle" column="center_detail_vehicle" />
+		<result property="centerDetailHompage" column="center_detail_hompage" />
+		<result property="centerDetailEstablish" column="center_detail_establish" />
+	</resultMap>
+	
+	<select id="getKidsdataDetailOne" resultMap="SMapKidsdataDetailMap">
+		SELECT *
+		FROM kidsdata_detail
+		WHERE center_num = #{centerNum}
+	</select>
+
+</mapper>

@@ -14,5 +14,9 @@
 	 	<typeAlias type="com.start.backend.detail.vo.Detail" alias="Detail" />
 	 	<typeAlias type="com.start.backend.transactionSample.vo.Sample" alias="Sample" />
 	 	<typeAlias type="com.start.backend.user.vo.User" alias="User" />
+	 	<typeAlias type="com.start.backend.searchMap.vo.SMapCenter" alias="SMapCenter" />
+	 	<typeAlias type="com.start.backend.searchMap.vo.SMapChildcareEval" alias="SMapChildcareEval" />
+	 	<typeAlias type="com.start.backend.searchMap.vo.SMapChildcareViolation" alias="SMapChildcareViolation" />
+	 	<typeAlias type="com.start.backend.searchMap.vo.SMapKidsdataDetail" alias="SMapKidsdataDetail" />
 	</typeAliases>
 </configuration>
