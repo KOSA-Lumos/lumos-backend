@@ -20,6 +20,27 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SqlSession session;
+	
+	@Override
+	public User selectKaKaoUser(User user){
+
+		User user1 = new User();
+		user1 = session.selectOne("User.getKakaoUser", user.getUserId());
+		return user1;
+	}
+
+	@Override
+	public int insertUser(User user) throws Exception {
+		
+		return session.insert("User.insertUser", user);
+	}
+	
+	@Override
+	public User selectLoginUser(User user) {
+
+		return session.selectOne("User.selectLoginUser", user);
+	}
+	
 
 	@Override
 	public User addUser(String userId) {
@@ -37,20 +58,6 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 	
-	@Override
-	public User selectKaKaoUser(User user){
-
-		User user1 = new User();
-		user1 = session.selectOne("User.getKakaoUser", user.getUserId());
-		return user1;
-	}
-
-	@Override
-	public int insertUser(User user) throws Exception {
-		
-		return session.insert("User.insertUser", user);
-	}
-
 	
 	
 //	@Override
@@ -81,6 +88,7 @@ public class UserDaoImpl implements UserDao {
 		session.delete("User.deleteUser", userId);
 		
 	}
+
 
 }
 

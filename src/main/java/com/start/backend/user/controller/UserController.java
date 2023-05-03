@@ -18,5 +18,6 @@ public interface UserController {
     
 	void deleteUser(String userId) throws Exception;
 
+	int signUp(User user);
 
 }

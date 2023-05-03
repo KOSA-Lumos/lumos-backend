@@ -1,5 +1,7 @@
 package com.start.backend.user.controller;
 
+import java.lang.annotation.Retention;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,8 @@ import com.start.backend.user.service.UserService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8079", allowedHeaders = "Content-Type")
+@CrossOrigin(origins = "http://localhost:8079", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping(produces = "application/json; charset=utf-8", value="/user")
-//@RequestMapping(value="/")
 public class UserCRUDController implements UserController {
 
 	private Logger log = LogManager.getLogger("case3");
@@ -36,7 +37,8 @@ public class UserCRUDController implements UserController {
 		log.debug("dddddd");
 		User user = new User();
 		log.debug(user);
-		user.setUserId(userId);
+		user.setUserId(userId); // setter라는 메소드를 이용
+		 user.getUserId();
 		log.debug(user);
 		user = userService.getKakaoUser(user);
 		log.debug(user);
@@ -48,15 +50,40 @@ public class UserCRUDController implements UserController {
 		return user;
 	}
 	
-	@PostMapping("/signup")
-	  public int signUp(User user) {
+	@PostMapping(value="/signup")
+	  public int signUp(@RequestBody User user) {
 
+		log.debug("tttest");
+		log.debug(user);
 		int signUpUser = userService.signUpUser(user);
-		log.debug(signUpUser);
+		log.debug("~~뭐가 들었나~~" + signUpUser);
 		
 	    return signUpUser;
 	  }
 
+	@GetMapping(value="/login")
+	public User login(@ModelAttribute User user) {
+		
+			User loginUser = userService.loginUser(user);
+			log.debug(loginUser);
+		return loginUser;
+	}
+	
+//	@GetMapping(value="/login")
+//	public ResponseEntity<String>  login(@ModelAttribute User user) {
+//		
+//		User loginUser = userService.loginUser(user);
+//		log.debug(loginUser);
+//		
+//		
+//			
+//		return ResponseEntity.ok().body("token");
+//	}
+	
+	
+	
+//	@PostMapping(value="/logout")
+//	public 
 
 
 	@Override

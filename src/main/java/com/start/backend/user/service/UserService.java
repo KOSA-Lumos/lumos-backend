@@ -12,6 +12,10 @@ public interface UserService {
 //	String getAccessToken(String code);
 
 	User getKakaoUser(User user);
+	
+	int signUpUser(User user);
+
+	User loginUser(User user);
 
 	User getUser(String userId);
 
@@ -21,6 +25,5 @@ public interface UserService {
 
 	void deleteUser(String userId) throws Exception;
 
-	int signUpUser(User user);
 
 }

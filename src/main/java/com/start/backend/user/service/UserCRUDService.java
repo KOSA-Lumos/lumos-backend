@@ -50,6 +50,16 @@ public class UserCRUDService implements UserService {
 		
 		return signUpUser;
 	}
+	
+	@Override
+	public User loginUser(User user) {
+		User loginUser = userDao.selectLoginUser(user);
+		
+		return loginUser;
+	}
+	
+	
+	
 
 	@Transactional
 	@Override
@@ -78,6 +88,7 @@ public class UserCRUDService implements UserService {
 		
 		userDao.deleteUser(userId);
 	}
+
 
 
 }

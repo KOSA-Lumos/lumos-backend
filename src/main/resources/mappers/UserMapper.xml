@@ -14,7 +14,6 @@
 		<result property="userName" column="USER_NAME" />
 		<result property="nickname" column="NICKNAME" />
 		<result property="userAddress" column="USER_ADDRESS" />
-		<result property="email" column="EMAIL" />
 		<result property="phone" column="PHONE" />
 		<result property="status" column="STATUS" />
 		<result property="adminYn" column="ADMIN_YN" />
@@ -27,10 +26,15 @@
 	</select>
 
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO user (userId, userPw, userName, nickname, phone, userAddress)
-		VALUES (#{userId}, #{userPw}, #{userName}, #{nickName},
-		#{phone})
+		INSERT INTO user_tb (user_id, user_pw, user_name, nickname, phone, user_address)
+		VALUES (#{userId}, #{userPw}, #{userName}, #{nickname}, #{phone}, #{userAddress})
 	</insert>
+	
+	<select id="selectLoginUser" parameterType="User" resultMap="userResultSet">
+		SELECT *
+		FROM user_tb
+		WHERE USER_ID = #{userId} and USER_PW = #{userPw}
+	</select>
 
 	<select id="addUser" parameterType="String" resultType="User">
 		SELECT *

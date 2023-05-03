@@ -9,6 +9,10 @@ import com.start.backend.user.vo.User;
 
 
 public interface UserDao {
+	
+	User selectKaKaoUser(User user);
+
+	User selectLoginUser(User user);
 
 	User addUser(String userId);
 
@@ -19,6 +23,4 @@ public interface UserDao {
 	void updateUser(String userId) throws Exception;
 
 	void deleteUser(String userId) throws Exception;
-
-	User selectKaKaoUser(User user);
 }
