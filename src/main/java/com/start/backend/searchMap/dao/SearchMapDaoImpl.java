@@ -1,5 +1,7 @@
 package com.start.backend.searchMap.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +33,16 @@ public class SearchMapDaoImpl implements SearchMapDao {
 	}
 
 	@Override
+	public List<SMapCenter> getCenterList() {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@@ " + methodName + " 실행");
+		
+		String queryId = methodName;
+		List<SMapCenter> result = session.selectList(mapperNamespace + "." + queryId);
+		return result;
+	}
+
+	@Override
 	public SMapChildcareEval getChildcareEvalOne(int centerNum) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@@@ " + methodName + " 실행");
@@ -57,6 +69,16 @@ public class SearchMapDaoImpl implements SearchMapDao {
 		
 		String queryId = methodName;
 		SMapKidsdataDetail result = session.selectOne(mapperNamespace + "." + queryId, centerNum);
+		return result;
+	}
+
+	@Override
+	public List<SMapKidsdataDetail> getKidsdataDetailList(int centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@@ " + methodName + " 실행");
+		log.debug(centerNum);
+		String queryId = methodName;
+		List<SMapKidsdataDetail> result = session.selectList(mapperNamespace + "." + queryId, centerNum);
 		return result;
 	}
 

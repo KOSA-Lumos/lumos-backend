@@ -1,5 +1,7 @@
 package com.start.backend.searchMap.service;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,19 @@ public class SearchMapServiceImpl implements SearchMapService {
 		log.debug(center);
 		Gson gson = new Gson();
 		String json = gson.toJson(center);
+		log.debug(json);
+		return json;
+	}
+
+	@Override
+	public String getCenterList() {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@ " + methodName + " 실행");
+		
+		List<SMapCenter> centerList = searchMapDao.getCenterList();
+		log.debug(centerList);
+		Gson gson = new Gson();
+		String json = gson.toJson(centerList);
 		log.debug(json);
 		return json;
 	}
@@ -72,4 +87,17 @@ public class SearchMapServiceImpl implements SearchMapService {
 		return json;
 	}
 
+	@Override
+	public String getKidsdataDetailList(int centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@ " + methodName + " 실행");
+		
+		List<SMapKidsdataDetail> kidsdataDetailList = searchMapDao.getKidsdataDetailList(centerNum);
+		log.debug(kidsdataDetailList);
+		Gson gson = new Gson();
+		String json = gson.toJson(kidsdataDetailList);
+		log.debug(json);
+		return json;
+	}
+	
 }

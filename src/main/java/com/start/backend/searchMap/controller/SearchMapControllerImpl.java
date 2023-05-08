@@ -49,6 +49,17 @@ public class SearchMapControllerImpl implements SearchMapController {
 		String json = searchMapService.getCenterOne(cNum);
 		return json;
 	}
+
+	@Override
+	@GetMapping(value="/center/list/{centerNum}")
+	public String getCenterList(@PathVariable String centerNum, String condition) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+//		int cNum = Integer.parseInt(centerNum);
+		String json = searchMapService.getCenterList();
+		return json;
+	}
 	
 	@Override
 	@GetMapping(value="/childcare_eval/{centerNum}")
@@ -83,20 +94,20 @@ public class SearchMapControllerImpl implements SearchMapController {
 		return json;
 	}
 	
-//	@Override
-//	@GetMapping(value="/childcare_eval/{searchMapNum}")
-//	public String getMethod2(@PathVariable int centerNum, SearchMap searchMap) {
-//		log.debug("@@ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " 실행");
-//		return null;
-//	}
-//
-//	@Override
-//	@GetMapping(value="/childcare_violation/{searchMapNum}")
-//	public String getMethod3(@PathVariable int centerNum, SearchMap searchMap) {
-//		log.debug("@@ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " 실행");
-//		return null;
-//	}
-
+	@Override
+	@GetMapping(value="/kidsdata_detail/list/{centerNum}")
+	public String getKidsdataDetailList(String centerNum, String condition) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		int cNum = Integer.parseInt(centerNum);
+		String json = searchMapService.getKidsdataDetailList(cNum);
+		return json;
+	}
+	
+	
+	
+	
 	
 	
 //	// PUT methods

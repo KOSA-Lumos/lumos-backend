@@ -25,8 +25,8 @@ public class SMapKidsdataDetail {
 	private int centerDetailTeachercount;
 	private int centerDetailRegularperson;
 	private int centerDetailCurrentperson;
-	private String centerDetailLatitude;
-	private String centerDetailLongitude;
+	private double centerDetailLatitude;
+	private double centerDetailLongitude;
 	private String centerDetailVehicle;
 	private String centerDetailHompage;
 	private String centerDetailEstablish;

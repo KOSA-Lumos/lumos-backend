@@ -24,6 +24,12 @@
 		WHERE center_num = #{centerNum}
 	</select>
 	
+	<select id="getCenterList" resultMap="SMapCenterMap">
+		SELECT *
+		FROM center
+		WHERE center_num = 1 or center_num = 2 or center_num = 3;
+	</select>
+	
 	<!-- SMapChildcareEval -->
 	<resultMap id="SMapChildcareEvalMap" type="SMapChildcareEval">
 		<result property="centerNum" column="center_num" />
@@ -97,6 +103,12 @@
 		SELECT *
 		FROM kidsdata_detail
 		WHERE center_num = #{centerNum}
+	</select>
+	
+	<select id="getKidsdataDetailList" resultMap="SMapKidsdataDetailMap">
+		SELECT *
+		FROM kidsdata_detail
+		WHERE center_num &gt; #{centerNum} and center_num &lt; (#{centerNum} + 5);
 	</select>
 
 </mapper>
