@@ -7,6 +7,10 @@ package com.start.backend.user.service;
 
 import com.start.backend.user.dao.UserDao;
 import com.start.backend.user.vo.User;
+
+import java.util.List;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +54,41 @@ public class UserCRUDService implements UserService {
 		
 		return signUpUser;
 	}
+	
+	@Override
+	public User loginUser(User user) {
+		User loginUser = userDao.selectLoginUser(user);
+		
+		return loginUser;
+	}
+	
+	@Override
+	public int checkUserId(String userId) {
+		int checkUserId = userDao.checkUserId(userId);
+		
+		log.debug("service : " + checkUserId);
+		return checkUserId;
+	}
+	
+
+	@Override
+	public List<User> getUsers(User user) {
+		
+		List<User> userList = userDao.selectUserList(user);
+		
+		
+		return userList;
+	}
+	
+	@Override
+	public int deleteUser(String userId) throws Exception {
+		int deleteUser = userDao.deleteUser(userId);
+		
+		return deleteUser;
+	}
+	
+	
+	//------------------------------------------------------------
 
 	@Transactional
 	@Override
@@ -71,13 +110,14 @@ public class UserCRUDService implements UserService {
 		
 		userDao.updateUser(userId);
 	}
+
 	
-	@Transactional
-	@Override
-	public void deleteUser(String userId) throws Exception {
-		
-		userDao.deleteUser(userId);
-	}
+//	@Transactional
+//	@Override
+//	public void deleteUser(String userId) throws Exception {
+//		
+//		userDao.deleteUser(userId);
+//	}
 
 
 }

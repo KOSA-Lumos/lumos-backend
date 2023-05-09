@@ -5,20 +5,32 @@
 //}
 package com.start.backend.user.dao;
 
+import java.util.List;
+
 import com.start.backend.user.vo.User;
 
 
 public interface UserDao {
+	
+	User selectKaKaoUser(User user);
+
+	User selectLoginUser(User user);
+	
+	int insertUser(User user) throws Exception;
+	
+	int checkUserId(String userId);
+	
+	List<User> selectUserList(User user);
+	
+	int deleteUser(String userId) throws Exception;
 
 	User addUser(String userId);
 
 	User getUser(String userId);
-	
-	int insertUser(User user) throws Exception;
 
 	void updateUser(String userId) throws Exception;
 
-	void deleteUser(String userId) throws Exception;
+//	void deleteUser(String userId) throws Exception;
 
-	User selectKaKaoUser(User user);
+
 }
