@@ -9,4 +9,6 @@ public interface SearchMapService {
 	public String getKidsdataDetailOne(int centerNum);
 	public String getKidsdataDetailList(int centerNum);
 	
+	public String searchCentersByCenterName(String centerName);
+	
 }

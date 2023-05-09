@@ -30,6 +30,14 @@
 		WHERE center_num &gt; #{centerNum} and center_num &lt; (#{centerNum} + 5);
 	</select>
 	
+	<select id="getCenterListByCenterName" parameterType="String" resultMap="SMapCenterMap">
+		SELECT *
+		FROM center
+		WHERE center_name LIKE '%${centerName}%'
+		ORDER BY center_num ASC
+		LIMIT 5;
+	</select>
+	
 	<!-- SMapChildcareEval -->
 	<resultMap id="SMapChildcareEvalMap" type="SMapChildcareEval">
 		<result property="centerNum" column="center_num" />

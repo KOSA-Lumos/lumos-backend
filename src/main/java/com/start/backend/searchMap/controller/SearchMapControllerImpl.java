@@ -105,6 +105,16 @@ public class SearchMapControllerImpl implements SearchMapController {
 		return json;
 	}
 	
+	@Override
+	@GetMapping(value="/center/list/name/{centerName}")
+	public String searchCentersByCenterName(String centerName, String condition) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		String json = searchMapService.searchCentersByCenterName(centerName);
+		return json;
+	}
+	
 	
 	
 	

@@ -13,6 +13,8 @@ public interface SearchMapController {
 	public String getChildcareViolationOne(@PathVariable String centerNum, String condition);
 	public String getKidsdataDetailOne(@PathVariable String centerNum, String condition);
 	public String getKidsdataDetailList(@PathVariable String centerNum, String condition);
+	
+	public String searchCentersByCenterName(@PathVariable String centerNum, String condition);
 
 //	// PUT methods
 //	String addSearchMap(String searchMap);
