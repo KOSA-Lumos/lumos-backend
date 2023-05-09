@@ -29,6 +29,7 @@
 				<value>classpath:mappers/GradeMapper.xml</value>
 				<value>classpath:mappers/DetailMapper.xml</value>
 				<value>classpath:mappers/SampleMapper.xml</value>
+				<value>classpath:mappers/SearchMapMapper.xml</value>
 			</list>
 		</property>
 
