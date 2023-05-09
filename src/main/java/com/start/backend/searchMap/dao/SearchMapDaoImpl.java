@@ -33,12 +33,12 @@ public class SearchMapDaoImpl implements SearchMapDao {
 	}
 
 	@Override
-	public List<SMapCenter> getCenterList() {
+	public List<SMapCenter> getCenterList(int centerNum) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@@@ " + methodName + " 실행");
 		
 		String queryId = methodName;
-		List<SMapCenter> result = session.selectList(mapperNamespace + "." + queryId);
+		List<SMapCenter> result = session.selectList(mapperNamespace + "." + queryId, centerNum);
 		return result;
 	}
 
@@ -76,7 +76,7 @@ public class SearchMapDaoImpl implements SearchMapDao {
 	public List<SMapKidsdataDetail> getKidsdataDetailList(int centerNum) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@@@ " + methodName + " 실행");
-		log.debug(centerNum);
+		
 		String queryId = methodName;
 		List<SMapKidsdataDetail> result = session.selectList(mapperNamespace + "." + queryId, centerNum);
 		return result;

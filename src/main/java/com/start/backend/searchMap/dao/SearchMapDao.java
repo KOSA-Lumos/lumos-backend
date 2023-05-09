@@ -10,7 +10,7 @@ import com.start.backend.searchMap.vo.SMapKidsdataDetail;
 public interface SearchMapDao {
 
 	public SMapCenter getCenterOne(int centerNum);
-	public List<SMapCenter> getCenterList();
+	public List<SMapCenter> getCenterList(int centerNum);
 	public SMapChildcareEval getChildcareEvalOne(int centerNum);
 	public SMapChildcareViolation getChildcareViolationOne(int centerNum);
 	public SMapKidsdataDetail getKidsdataDetailOne(int centerNum);

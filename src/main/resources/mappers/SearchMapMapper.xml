@@ -27,7 +27,7 @@
 	<select id="getCenterList" resultMap="SMapCenterMap">
 		SELECT *
 		FROM center
-		WHERE center_num = 1 or center_num = 2 or center_num = 3;
+		WHERE center_num &gt; #{centerNum} and center_num &lt; (#{centerNum} + 5);
 	</select>
 	
 	<!-- SMapChildcareEval -->

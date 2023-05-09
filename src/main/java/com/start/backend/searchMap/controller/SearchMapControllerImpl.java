@@ -56,8 +56,8 @@ public class SearchMapControllerImpl implements SearchMapController {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
 		
-//		int cNum = Integer.parseInt(centerNum);
-		String json = searchMapService.getCenterList();
+		int cNum = Integer.parseInt(centerNum);
+		String json = searchMapService.getCenterList(cNum);
 		return json;
 	}
 	
