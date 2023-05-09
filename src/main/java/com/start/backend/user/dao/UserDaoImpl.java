@@ -6,6 +6,9 @@
 package com.start.backend.user.dao;
 
 import com.start.backend.user.vo.User;
+
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +23,50 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SqlSession session;
+	
+	@Override
+	public User selectKaKaoUser(User user){
+
+		User user1 = new User();
+		user1 = session.selectOne("User.getKakaoUser", user.getUserId());
+		return user1;
+	}
+
+	@Override
+	public int insertUser(User user) throws Exception {
+		
+		return session.insert("User.insertUser", user);
+	}
+	
+	@Override
+	public User selectLoginUser(User user) {
+
+		return session.selectOne("User.selectLoginUser", user);
+	}
+	
+	@Override
+	public int checkUserId(String userId) {
+	
+		return session.selectOne("User.checkUserId", userId);
+	}
+	
+
+	@Override
+	public List<User> selectUserList(User user) {
+		
+		return session.selectList("User.selectUserList", user);
+	}
+	
+	
+	@Override
+	public int deleteUser(String userId) throws Exception {
+		
+		return session.delete("User.deleteUser", userId);
+		
+	}
+	
+	
+	
 
 	@Override
 	public User addUser(String userId) {
@@ -37,20 +84,6 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 	
-	@Override
-	public User selectKaKaoUser(User user){
-
-		User user1 = new User();
-		user1 = session.selectOne("User.getKakaoUser", user.getUserId());
-		return user1;
-	}
-
-	@Override
-	public int insertUser(User user) throws Exception {
-		
-		return session.insert("User.insertUser", user);
-	}
-
 	
 	
 //	@Override
@@ -75,12 +108,13 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
-	@Override
-	public void deleteUser(String userId) throws Exception {
-		
-		session.delete("User.deleteUser", userId);
-		
-	}
+//	@Override
+//	public void deleteUser(String userId) throws Exception {
+//		
+//		session.delete("User.deleteUser", userId);
+//		
+//	}
+
 
 }
 

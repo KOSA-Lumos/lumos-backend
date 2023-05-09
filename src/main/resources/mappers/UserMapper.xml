@@ -13,8 +13,9 @@
 		<result property="userPw" column="USER_PW" />
 		<result property="userName" column="USER_NAME" />
 		<result property="nickname" column="NICKNAME" />
-		<result property="userAddress" column="USER_ADDRESS" />
-		<result property="email" column="EMAIL" />
+		<result property="zonecode" column="ZONECODE" />
+		<result property="roadAddress" column="ROADADDRESS" />
+		<result property="detailAddress" column="DETAILADDRESS" />
 		<result property="phone" column="PHONE" />
 		<result property="status" column="STATUS" />
 		<result property="adminYn" column="ADMIN_YN" />
@@ -27,10 +28,35 @@
 	</select>
 
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO user (userId, userPw, userName, nickname, phone, userAddress)
-		VALUES (#{userId}, #{userPw}, #{userName}, #{nickName},
-		#{phone})
+		INSERT INTO user_tb (user_id, user_pw, user_name, nickname, phone, ZONECODE, ROADADDRESS, DETAILADDRESS)
+		VALUES (#{userId}, #{userPw}, #{userName}, #{nickname}, #{phone}, #{zonecode}, #{roadAddress}, #{detailAddress})
 	</insert>
+	
+	<select id="selectLoginUser" parameterType="User" resultMap="userResultSet">
+		SELECT *
+		FROM user_tb
+		WHERE USER_ID = #{userId} and USER_PW = #{userPw}
+	</select>
+	
+	
+	<select id="checkUserId" parameterType="String" resultType="int" >
+		SELECT COUNT(*)
+		FROM user_tb
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="selectUserList" parameterType="User" resultMap="userResultSet">
+		SELECT *
+		FROM user_tb
+	</select>
+	
+	<update id="deleteUser" parameterType="String">
+		UPDATE user_tb
+		SET status = 'N'
+		WHERE USER_ID = #{userId}
+	</update>
+	
+
 
 	<select id="addUser" parameterType="String" resultType="User">
 		SELECT *
@@ -68,9 +94,9 @@
 		deleteDate IS NULL;
 	</update>
 
-	<delete id="deleteUser" parameterType="User">
+	<!-- <delete id="deleteUser" parameterType="User">
 		DELETE FROM Preference WHERE userId = #{userId}
-	</delete>
+	</delete> -->
 
 
 

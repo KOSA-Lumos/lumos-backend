@@ -1,5 +1,10 @@
 package com.start.backend.user.controller;
 
+import java.lang.annotation.Retention;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +16,8 @@ import com.start.backend.user.service.UserService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8079", allowedHeaders = "Content-Type")
+@CrossOrigin(origins = "http://localhost:8079", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping(produces = "application/json; charset=utf-8", value="/user")
-//@RequestMapping(value="/")
 public class UserCRUDController implements UserController {
 
 	private Logger log = LogManager.getLogger("case3");
@@ -36,7 +40,8 @@ public class UserCRUDController implements UserController {
 		log.debug("dddddd");
 		User user = new User();
 		log.debug(user);
-		user.setUserId(userId);
+		user.setUserId(userId); // setter라는 메소드를 이용
+		 user.getUserId();
 		log.debug(user);
 		user = userService.getKakaoUser(user);
 		log.debug(user);
@@ -48,15 +53,76 @@ public class UserCRUDController implements UserController {
 		return user;
 	}
 	
-	@PostMapping("/signup")
-	  public int signUp(User user) {
+	@PostMapping(value="/signup")
+	  public int signUp(@RequestBody User user) {
 
+		log.debug("singup cont");
+		log.debug(user);
 		int signUpUser = userService.signUpUser(user);
-		log.debug(signUpUser);
+		log.debug("~~뭐가 들었나~~" + signUpUser);
 		
 	    return signUpUser;
 	  }
 
+	@GetMapping(value="/login")
+	public User login(@ModelAttribute User user) {
+		
+			User loginUser = userService.loginUser(user);
+			log.debug(loginUser);
+		return loginUser;
+	}
+	
+	
+//	@PostMapping(value="/check-userid")
+//	public int checkUserId(String userId) {
+//		int checkUserId = userService.checkUserId(userId);
+//		log.debug(checkUserId);
+//		return checkUserId;
+//	}
+	
+	@GetMapping(value="/check-userid")
+	public Map<String, Boolean> checkUserId(@RequestParam String userId) {
+		boolean isExist = userService.checkUserId(userId) > 0;
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("isExist", isExist);
+		log.debug(isExist);
+		return response;
+	}
+	
+// ---------------------------------- 관리자 ----------------------------------------
+	@GetMapping(value = "/all-user")
+	public List<User> getUsers(@ModelAttribute User user) {
+
+		List<User> userList = userService.getUsers(user);
+		log.debug(userList);
+		return userList;
+	}
+	
+	@Override
+	@PutMapping(value="/set-user/{userId}")
+	public int deleteUser(@PathVariable String userId) throws Exception {
+		
+		int deleteUser = userService.deleteUser(userId);
+		
+		return deleteUser;
+		
+	}
+	
+//	@GetMapping(value="/login")
+//	public ResponseEntity<String>  login(@ModelAttribute User user) {
+//		
+//		User loginUser = userService.loginUser(user);
+//		log.debug(loginUser);
+//		
+//		
+//			
+//		return ResponseEntity.ok().body("token");
+//	}
+	
+	
+	
+//	@PostMapping(value="/logout")
+//	public 
 
 
 	@Override
@@ -77,18 +143,19 @@ public class UserCRUDController implements UserController {
 		return user;
 	}
 
-	@Override
-	@PutMapping(value="/user/{userId}")
-	public void updateUser(@PathVariable String userId) throws Exception {
-		
-		userService.updateUser(userId);
-		
-	}
+//	@Override
+//	@PutMapping(value="/user/{userId}")
+//	public void updateUser(@PathVariable String userId) throws Exception {
+//		
+//		userService.updateUser(userId);
+//		
+//	}
 
-	@Override
-	@DeleteMapping(value="/user/{userId}")
-	public void deleteUser(@PathVariable String userId) throws Exception {
-		
-		userService.deleteUser(userId);
-	}
+//	@Override
+//	@DeleteMapping(value="/user/{userId}")
+//	public void deleteUser(@PathVariable String userId) throws Exception {
+//		
+//		userService.deleteUser(userId);
+//	}
+
 }
