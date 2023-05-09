@@ -13,7 +13,9 @@ public class User {
 	private String userId;
 	private String userPw;
 	private String userName;
-	private String userAddress;
+	private int zonecode;
+	private String roadAddress;
+	private String detailAddress;
 	private String nickname;
 	private String phone;
 	private String status;

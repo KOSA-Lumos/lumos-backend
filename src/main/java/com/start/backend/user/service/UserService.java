@@ -5,6 +5,9 @@
 //}
 package com.start.backend.user.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.start.backend.user.vo.User;
 
 public interface UserService {
@@ -16,6 +19,12 @@ public interface UserService {
 	int signUpUser(User user);
 
 	User loginUser(User user);
+	
+	int checkUserId(String userId);
+	
+	List<User> getUsers(User user);
+	
+	int deleteUser(String userId) throws Exception;
 
 	User getUser(String userId);
 
@@ -23,7 +32,8 @@ public interface UserService {
 
 	void updateUser(String userId) throws Exception;
 
-	void deleteUser(String userId) throws Exception;
+//	void deleteUser(String userId) throws Exception;
+
 
 
 }

@@ -6,6 +6,9 @@
 package com.start.backend.user.dao;
 
 import com.start.backend.user.vo.User;
+
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,6 +43,29 @@ public class UserDaoImpl implements UserDao {
 
 		return session.selectOne("User.selectLoginUser", user);
 	}
+	
+	@Override
+	public int checkUserId(String userId) {
+	
+		return session.selectOne("User.checkUserId", userId);
+	}
+	
+
+	@Override
+	public List<User> selectUserList(User user) {
+		
+		return session.selectList("User.selectUserList", user);
+	}
+	
+	
+	@Override
+	public int deleteUser(String userId) throws Exception {
+		
+		return session.delete("User.deleteUser", userId);
+		
+	}
+	
+	
 	
 
 	@Override
@@ -82,12 +108,12 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
-	@Override
-	public void deleteUser(String userId) throws Exception {
-		
-		session.delete("User.deleteUser", userId);
-		
-	}
+//	@Override
+//	public void deleteUser(String userId) throws Exception {
+//		
+//		session.delete("User.deleteUser", userId);
+//		
+//	}
 
 
 }

@@ -1,6 +1,9 @@
 package com.start.backend.user.controller;
 
 import java.lang.annotation.Retention;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,7 +56,7 @@ public class UserCRUDController implements UserController {
 	@PostMapping(value="/signup")
 	  public int signUp(@RequestBody User user) {
 
-		log.debug("tttest");
+		log.debug("singup cont");
 		log.debug(user);
 		int signUpUser = userService.signUpUser(user);
 		log.debug("~~뭐가 들었나~~" + signUpUser);
@@ -67,6 +70,42 @@ public class UserCRUDController implements UserController {
 			User loginUser = userService.loginUser(user);
 			log.debug(loginUser);
 		return loginUser;
+	}
+	
+	
+//	@PostMapping(value="/check-userid")
+//	public int checkUserId(String userId) {
+//		int checkUserId = userService.checkUserId(userId);
+//		log.debug(checkUserId);
+//		return checkUserId;
+//	}
+	
+	@GetMapping(value="/check-userid")
+	public Map<String, Boolean> checkUserId(@RequestParam String userId) {
+		boolean isExist = userService.checkUserId(userId) > 0;
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("isExist", isExist);
+		log.debug(isExist);
+		return response;
+	}
+	
+// ---------------------------------- 관리자 ----------------------------------------
+	@GetMapping(value = "/all-user")
+	public List<User> getUsers(@ModelAttribute User user) {
+
+		List<User> userList = userService.getUsers(user);
+		log.debug(userList);
+		return userList;
+	}
+	
+	@Override
+	@PutMapping(value="/set-user/{userId}")
+	public int deleteUser(@PathVariable String userId) throws Exception {
+		
+		int deleteUser = userService.deleteUser(userId);
+		
+		return deleteUser;
+		
 	}
 	
 //	@GetMapping(value="/login")
@@ -104,18 +143,19 @@ public class UserCRUDController implements UserController {
 		return user;
 	}
 
-	@Override
-	@PutMapping(value="/user/{userId}")
-	public void updateUser(@PathVariable String userId) throws Exception {
-		
-		userService.updateUser(userId);
-		
-	}
+//	@Override
+//	@PutMapping(value="/user/{userId}")
+//	public void updateUser(@PathVariable String userId) throws Exception {
+//		
+//		userService.updateUser(userId);
+//		
+//	}
 
-	@Override
-	@DeleteMapping(value="/user/{userId}")
-	public void deleteUser(@PathVariable String userId) throws Exception {
-		
-		userService.deleteUser(userId);
-	}
+//	@Override
+//	@DeleteMapping(value="/user/{userId}")
+//	public void deleteUser(@PathVariable String userId) throws Exception {
+//		
+//		userService.deleteUser(userId);
+//	}
+
 }
