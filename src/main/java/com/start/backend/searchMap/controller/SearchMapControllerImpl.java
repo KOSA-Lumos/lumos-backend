@@ -118,12 +118,23 @@ public class SearchMapControllerImpl implements SearchMapController {
 	
 	// 유치원 API 가져오기 테스트용 method
 	@Override
-	@GetMapping(value="/apicalltest/{centerNum}")
+	@GetMapping(value="/apicalltest/kinder/{centerNum}")
 	public String getKinderDataByApi(@PathVariable String centerNum) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
 		
 		String json = searchMapService.getKinderDataByApi(centerNum);
+		return json;
+	}
+	
+	// Kakao API 가져오기 테스트용 method
+	@Override
+	@GetMapping(value="/apicalltest/kakao/{centerNum}")
+	public String getPositionByKakaoApi(@PathVariable String centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		String json = searchMapService.getPositionByKakaoApi(centerNum);
 		return json;
 	}
 	

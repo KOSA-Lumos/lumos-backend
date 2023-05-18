@@ -17,6 +17,7 @@ public interface SearchMapController {
 	public String searchCentersByCenterName(@PathVariable String centerNum, String condition);
 
 	public String getKinderDataByApi(@PathVariable String centerNum);
+	public String getPositionByKakaoApi(@PathVariable String centerNum);
 
 //	// PUT methods
 //	String addSearchMap(String searchMap);

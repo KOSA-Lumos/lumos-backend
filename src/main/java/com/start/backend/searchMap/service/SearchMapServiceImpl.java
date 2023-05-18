@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
+import com.start.backend.searchMap.api.KakaoApiAddressDocuments;
+import com.start.backend.searchMap.api.KakaoApiAddressResponse;
 import com.start.backend.searchMap.api.KinderApiBasicInfo2;
 import com.start.backend.searchMap.api.KinderApiBasicInfo2Response;
 import com.start.backend.searchMap.api.KinderApiClassArea;
@@ -54,6 +56,8 @@ public class SearchMapServiceImpl implements SearchMapService {
 	//		기본 경로는 /src/main/resources 임.
 	@Value("${KINDERGARTEN_API_KEY}")
 	private String kindergartenApiKey;
+	@Value("${KAKAO_API_REST_KEY}")
+	private String kakaoApiRestKey;
 	
 	@Override
 	public String getCenterOne(int centerNum) {
@@ -258,8 +262,7 @@ public class SearchMapServiceImpl implements SearchMapService {
 		        // GET 요청 URL
 				String url = "https://e-childschoolinfo.moe.go.kr/api/notice/basicInfo2.do?";
 				String apiKey = "key=" + kindergartenApiKey;
-				String parameter = "&sidoCode=" + sidocode.getSidoSidocode()
-					+ "&sggCode=" + sidocode.getSidoSggcode();
+				String parameter = "&sidoCode=" + sidocode.getSidoSidocode() + "&sggCode=" + sidocode.getSidoSggcode();
 
 				// GET 요청 보내기
 				String apiResponse = restTemplate.getForObject(url + apiKey + parameter, String.class);
@@ -302,8 +305,7 @@ public class SearchMapServiceImpl implements SearchMapService {
 		        // GET 요청 URL
 				url = "https://e-childschoolinfo.moe.go.kr/api/notice/classArea.do?";
 				apiKey = "key=" + kindergartenApiKey;
-				parameter = "&sidoCode=" + sidocode.getSidoSidocode()
-					+ "&sggCode=" + sidocode.getSidoSggcode();
+				parameter = "&sidoCode=" + sidocode.getSidoSidocode() + "&sggCode=" + sidocode.getSidoSggcode();
 
 				// GET 요청 보내기
 				apiResponse = restTemplate.getForObject(url + apiKey + parameter, String.class);
@@ -343,8 +345,7 @@ public class SearchMapServiceImpl implements SearchMapService {
 		        // GET 요청 URL
 				url = "https://e-childschoolinfo.moe.go.kr/api/notice/teachersInfo.do?";
 				apiKey = "key=" + kindergartenApiKey;
-				parameter = "&sidoCode=" + sidocode.getSidoSidocode()
-					+ "&sggCode=" + sidocode.getSidoSggcode();
+				parameter = "&sidoCode=" + sidocode.getSidoSidocode() + "&sggCode=" + sidocode.getSidoSggcode();
 
 				// GET 요청 보내기
 				apiResponse = restTemplate.getForObject(url + apiKey + parameter, String.class);
@@ -388,8 +389,7 @@ public class SearchMapServiceImpl implements SearchMapService {
 		        // GET 요청 URL
 				url = "https://e-childschoolinfo.moe.go.kr/api/notice/schoolBus.do?";
 				apiKey = "key=" + kindergartenApiKey;
-				parameter = "&sidoCode=" + sidocode.getSidoSidocode()
-					+ "&sggCode=" + sidocode.getSidoSggcode();
+				parameter = "&sidoCode=" + sidocode.getSidoSidocode() + "&sggCode=" + sidocode.getSidoSggcode();
 
 				// GET 요청 보내기
 				apiResponse = restTemplate.getForObject(url + apiKey + parameter, String.class);
@@ -429,8 +429,7 @@ public class SearchMapServiceImpl implements SearchMapService {
 //		        // GET 요청 URL
 //				url = "https://e-childschoolinfo.moe.go.kr/api/notice/safetyEdu.do?";
 //				apiKey = "key=" + kindergartenApiKey;
-//				parameter = "&sidoCode=" + sidocode.getSidoSidocode()
-//					+ "&sggCode=" + sidocode.getSidoSggcode();
+//				parameter = "&sidoCode=" + sidocode.getSidoSidocode() + "&sggCode=" + sidocode.getSidoSggcode();
 //
 //				// GET 요청 보내기
 //				apiResponse = restTemplate.getForObject(url + apiKey + parameter, String.class);
@@ -466,6 +465,51 @@ public class SearchMapServiceImpl implements SearchMapService {
 //					}
 //				}
 
+				// 카카오 API - 위경도 데이터 가져오기 ----------------------------------
+				// GET 요청 URL
+				String address = item.getCenterDetailAddress();
+				String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=" + address;
+
+				// GET 요청 보내기
+//				RestTemplate restTemplate = new RestTemplate();
+				HttpHeaders headers = new HttpHeaders();
+				headers.set("Authorization", "KakaoAK " + kakaoApiRestKey);
+				headers.setContentType(MediaType.APPLICATION_JSON);
+				HttpEntity<String> entity = new HttpEntity<>(headers);
+				
+				apiResponse = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class).getBody();
+				System.out.println("제발돼라");
+				log.debug(apiResponse);
+
+				// JSON 문자열을 Java 객체로 변환
+				KakaoApiAddressResponse kakaoApiAddressResponse = gson.fromJson(apiResponse, KakaoApiAddressResponse.class);
+				Set<KakaoApiAddressDocuments> kakaoApiAddressDocumentsSet = kakaoApiAddressResponse.getDocuments();
+				
+				// 위경도 데이터 결합하기
+				for (KakaoApiAddressDocuments setItem : kakaoApiAddressDocumentsSet) {
+					if (true) {
+	//					item.setCenterDetailState(setItem.getCenterDetailState());
+	//					item.setCenterDetailCity(setItem.getCenterDetailCity());
+	//					item.setCenterDetailBame(setItem.getKindername());
+	//					item.setCenterDetailClassification(setItem.getEstablish());
+	//					item.setCenterDetailCenteropen(setItem.getCenterDetailCenteropen());
+	//					item.setCenterDetailOfficenumber(setItem.getCenterDetailOfficenumber());
+	//					item.setCenterDetailAddress(setItem.getAddr());
+	//					item.setCenterDetailPhone(setItem.getTelno());
+	//					item.setCenterDetailFax(setItem.getCenterDetailFax());
+	//					item.setCenterDetailRoomcount(Integer.parseInt(setItem.getCrcnt().replaceAll("[^0-9]",  "")));
+	//					item.setCenterDetailRoomsize(Integer.parseInt(setItem.getClsrarea().replaceAll("[^0-9]",  "")));
+	//					item.setCenterDetailPlaygroundcount(setItem.getCenterDetailPlaygroundcount());
+	//					item.setCenterDetailTeachercount(setItem.getCenterDetailTeachercount());
+	//					item.setCenterDetailRegularperson(setItem.getPrmstfcnt());
+	//					item.setCenterDetailCurrentperson(setItem.getCenterDetailCurrentperson());
+						item.setCenterDetailLatitude(setItem.getY());
+						item.setCenterDetailLongitude(setItem.getX());
+	//					item.setCenterDetailVehicle(setItem.getVhcl_oprn_yn());
+	//					item.setCenterDetailHompage(setItem.getHpaddr());
+	//					item.setCenterDetailEstablish(setItem.getEdate());
+					}
+				}
 
 			}
 		}
@@ -490,7 +534,7 @@ public class SearchMapServiceImpl implements SearchMapService {
 		log.debug("@@@ " + methodName + " 실행");
 		
         // RestTemplate 인스턴스 생성
-        RestTemplate restTemplate = new RestTemplate();
+//        RestTemplate restTemplate = new RestTemplate();
 
         // GET 요청 URL
 		String url = "https://e-childschoolinfo.moe.go.kr/api/notice/basicInfo.do?";
@@ -501,70 +545,39 @@ public class SearchMapServiceImpl implements SearchMapService {
 		String jsonString = restTemplate.getForObject(url + apiKey + parameter, String.class);
 		log.debug(jsonString);
 		
-		return "call success";
+		return jsonString;
 	}
 
-//	// Kakao API 주소데이터 테스트용 method
-//	public String getPositionByKakaoApi(String centerNum) {
-//		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-//		log.debug("@@@ " + methodName + " 실행");
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		// 희망의소리어린이집
-//		// 경기도 성남시 수정구 남문로60번길 9-1
-////		centerDetailLatitude: 37.44505043
-////		centerDetailLongitude: 127.1338897
-//		
-//
-//		// 가온호수유치원
-//		// 경기도 파주시 한빛로 70
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		// gpt 방식
-//		// 카카오 API - 위경도 데이터 가져오기 ----------------------------------
-////		String address = item.getCenterDetailAddress();
-////		String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=" + address;
-////		
-//////		RestTemplate restTemplate = new RestTemplate();
-////		HttpHeaders headers = new HttpHeaders();
-////		headers.set("Authorization", "KakaoAK " + kakaoAPIKey); // API_KEY에 본인의 Kakao Maps API 키를 입력하세요
-////		headers.setContentType(MediaType.APPLICATION_JSON);
-////		HttpEntity<String> entity = new HttpEntity<>(headers);
-////		
-////		// json으로 변환
-////		String jsonResponse = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class).getBody();
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-////		// 유치원 api 호출 방식
-////        // RestTemplate 인스턴스 생성
-////        RestTemplate restTemplate = new RestTemplate();
-////
-////        // GET 요청 URL
-////		String url = "https://e-childschoolinfo.moe.go.kr/api/notice/basicInfo.do?";
-////		String apiKey = "key=" + kindergartenApiKey;
-////		String parameter = "&sidoCode=27&sggCode=27140";
-////
-////		// GET 요청 보내기
-////		String jsonString = restTemplate.getForObject(url + apiKey + parameter, String.class);
-////		log.debug(jsonString);
-//		
-//		return "call success";
-//	}
+	// Kakao API 주소데이터 테스트용 method
+	public String getPositionByKakaoApi(String centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@ " + methodName + " 실행");
+		
+		// 카카오 API - 위경도 데이터 가져오기 ----------------------------------
+		// GET 요청 URL
+		String address = "경기도 성남시 수정구 남문로60번길 9-1";
+		String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=" + address;
+
+		// GET 요청 보내기
+//		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", "KakaoAK " + kakaoApiRestKey);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		
+		// response를 json으로 변환
+		String jsonResponse = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class).getBody();
+
+		// JSON 문자열을 Java 객체로 변환
+		KakaoApiAddressResponse kakaoApiAddressResponse = gson.fromJson(jsonResponse, KakaoApiAddressResponse.class);
+		Set<KakaoApiAddressDocuments> kakaoApiAddressDocumentsSet = kakaoApiAddressResponse.getDocuments();
+		
+		// 위경도 데이터 추출하기
+		for (KakaoApiAddressDocuments setItem : kakaoApiAddressDocumentsSet) {
+			log.debug("Longitude(x) : " + setItem.getX() + ", " + "Latitude(y) : " + setItem.getY());
+		}
+		
+		return jsonResponse;
+	}
 	
 }
