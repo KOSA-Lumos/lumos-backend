@@ -6,6 +6,7 @@ import com.start.backend.searchMap.vo.SMapCenter;
 import com.start.backend.searchMap.vo.SMapChildcareEval;
 import com.start.backend.searchMap.vo.SMapChildcareViolation;
 import com.start.backend.searchMap.vo.SMapKidsdataDetail;
+import com.start.backend.searchMap.vo.SMapSidocode;
 
 public interface SearchMapDao {
 
@@ -16,5 +17,6 @@ public interface SearchMapDao {
 	public SMapChildcareViolation getChildcareViolationOne(int centerNum);
 	public SMapKidsdataDetail getKidsdataDetailOne(int centerNum);
 	public List<SMapKidsdataDetail> getKidsdataDetailList(int centerNum);
+	public SMapSidocode getSidocodeOne(SMapSidocode sidocode);
 	
 }

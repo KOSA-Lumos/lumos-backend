@@ -96,7 +96,7 @@ public class SearchMapControllerImpl implements SearchMapController {
 	
 	@Override
 	@GetMapping(value="/kidsdata_detail/list/{centerNum}")
-	public String getKidsdataDetailList(String centerNum, String condition) {
+	public String getKidsdataDetailList(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
 		
@@ -105,9 +105,10 @@ public class SearchMapControllerImpl implements SearchMapController {
 		return json;
 	}
 	
+	// 이름으로 센터 Like 검색
 	@Override
 	@GetMapping(value="/center/list/name/{centerName}")
-	public String searchCentersByCenterName(String centerName, String condition) {
+	public String searchCentersByCenterName(@PathVariable String centerName, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
 		
@@ -115,7 +116,16 @@ public class SearchMapControllerImpl implements SearchMapController {
 		return json;
 	}
 	
-	
+	// 유치원 API 가져오기 테스트용 method
+	@Override
+	@GetMapping(value="/apicalltest/{centerNum}")
+	public String getKinderDataByApi(@PathVariable String centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		String json = searchMapService.getKinderDataByApi(centerNum);
+		return json;
+	}
 	
 	
 	

@@ -119,4 +119,19 @@
 		WHERE center_num &gt; #{centerNum} and center_num &lt; (#{centerNum} + 5);
 	</select>
 
+	<!-- SMapSidocode -->
+	<resultMap id="SMapSidocodeMap" type="SMapSidocode">
+		<result property="sidoId" column="sido_id" />
+		<result property="sidoState" column="sido_state" />
+		<result property="sidoSidocode" column="sido_sidocode" />
+		<result property="sidoCity" column="sido_city" />
+		<result property="sidoSggcode" column="sido_sggcode" />
+	</resultMap>
+	
+	<select id="getSidocodeOne" parameterType="SMapSidocode" resultMap="SMapSidocodeMap">
+		SELECT *
+		FROM sidocode
+		WHERE sido_state = #{sidoState} and sido_city = #{sidoCity};
+	</select>
+
 </mapper>

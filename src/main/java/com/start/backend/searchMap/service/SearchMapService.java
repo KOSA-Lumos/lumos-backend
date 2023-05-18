@@ -11,4 +11,6 @@ public interface SearchMapService {
 	
 	public String searchCentersByCenterName(String centerName);
 	
+	public String getKinderDataByApi(String centerNum);
+	
 }
