@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.start.backend.searchMap.vo.SMapCenter;
+import com.start.backend.searchMap.vo.SMapCenterKidsdataDetail;
 import com.start.backend.searchMap.vo.SMapChildcareEval;
 import com.start.backend.searchMap.vo.SMapChildcareViolation;
 import com.start.backend.searchMap.vo.SMapKidsdataDetail;
@@ -52,6 +53,16 @@ public class SearchMapDaoImpl implements SearchMapDao {
 		List<SMapCenter> result = session.selectList(mapperNamespace + "." + queryId, centerName);
 		return result;
 	}
+	
+	@Override
+	public List<SMapCenter> getCenterListByStateCity(SMapCenter keyword) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@@ " + methodName + " 실행");
+		
+		String queryId = methodName;
+		List<SMapCenter> result = session.selectList(mapperNamespace + "." + queryId, keyword);
+		return result;
+	}
 
 	@Override
 	public SMapChildcareEval getChildcareEvalOne(int centerNum) {
@@ -90,6 +101,16 @@ public class SearchMapDaoImpl implements SearchMapDao {
 		
 		String queryId = methodName;
 		List<SMapKidsdataDetail> result = session.selectList(mapperNamespace + "." + queryId, centerNum);
+		return result;
+	}
+	
+	@Override
+	public List<SMapKidsdataDetail> getKidsdataDetailListByStateCityLatLng(SMapKidsdataDetail keyword) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@@@ " + methodName + " 실행");
+		
+		String queryId = methodName;
+		List<SMapKidsdataDetail> result = session.selectList(mapperNamespace + "." + queryId, keyword);
 		return result;
 	}
 	
