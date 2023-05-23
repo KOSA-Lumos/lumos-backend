@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.start.backend.searchMap.service.SearchMapService;
+import com.start.backend.searchMap.vo.ParamCenterAddress;
 import com.start.backend.searchMap.vo.SearchMap;
 
 @RestController
@@ -40,7 +43,7 @@ public class SearchMapControllerImpl implements SearchMapController {
 	
 	// GET methods
 	@Override
-	@GetMapping(value="/center/{centerNum}")
+	@GetMapping(value="/skeleton/center/{centerNum}")
 	public String getCenterOne(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
@@ -51,7 +54,7 @@ public class SearchMapControllerImpl implements SearchMapController {
 	}
 
 	@Override
-	@GetMapping(value="/center/list/{centerNum}")
+	@GetMapping(value="/skeleton/center/list/{centerNum}")
 	public String getCenterList(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
@@ -62,7 +65,7 @@ public class SearchMapControllerImpl implements SearchMapController {
 	}
 	
 	@Override
-	@GetMapping(value="/childcare_eval/{centerNum}")
+	@GetMapping(value="/skeleton/childcare_eval/{centerNum}")
 	public String getChildcareEvalOne(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
@@ -73,7 +76,7 @@ public class SearchMapControllerImpl implements SearchMapController {
 	}
 	
 	@Override
-	@GetMapping(value="/childcare_violation/{centerNum}")
+	@GetMapping(value="/skeleton/childcare_violation/{centerNum}")
 	public String getChildcareViolationOne(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
@@ -84,7 +87,7 @@ public class SearchMapControllerImpl implements SearchMapController {
 	}
 	
 	@Override
-	@GetMapping(value="/kidsdata_detail/{centerNum}")
+	@GetMapping(value="/skeleton/kidsdata_detail/{centerNum}")
 	public String getKidsdataDetailOne(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
@@ -95,8 +98,8 @@ public class SearchMapControllerImpl implements SearchMapController {
 	}
 	
 	@Override
-	@GetMapping(value="/kidsdata_detail/list/{centerNum}")
-	public String getKidsdataDetailList(String centerNum, String condition) {
+	@GetMapping(value="/skeleton/kidsdata_detail/list/{centerNum}")
+	public String getKidsdataDetailList(@PathVariable String centerNum, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
 		
@@ -104,10 +107,25 @@ public class SearchMapControllerImpl implements SearchMapController {
 		String json = searchMapService.getKidsdataDetailList(cNum);
 		return json;
 	}
+
+	// 내 위치 기반 센터 추천받기
+	// 수신 정보 : 위도, 경도, 주소
+	@Override
+	@GetMapping(value="/center/list/address")
+	public String recommendCentersByAddress(@ModelAttribute ParamCenterAddress centerAddress) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		System.out.println(centerAddress);
+//		String cAddress = "서울특별시 강남구 역삼동";
+		String json = searchMapService.recommendCentersByAddress(centerAddress);
+		return json;
+	}
 	
+	// 이름으로 센터 Like 검색
 	@Override
 	@GetMapping(value="/center/list/name/{centerName}")
-	public String searchCentersByCenterName(String centerName, String condition) {
+	public String searchCentersByCenterName(@PathVariable String centerName, String condition) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		log.debug("@@ " + methodName + " 실행");
 		
@@ -115,7 +133,27 @@ public class SearchMapControllerImpl implements SearchMapController {
 		return json;
 	}
 	
+	// 유치원 API 가져오기 테스트용 method
+	@Override
+	@GetMapping(value="/apicalltest/kinder/{centerNum}")
+	public String getKinderDataByApi(@PathVariable String centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		String json = searchMapService.getKinderDataByApi(centerNum);
+		return json;
+	}
 	
+	// Kakao API 가져오기 테스트용 method
+	@Override
+	@GetMapping(value="/apicalltest/kakao/{centerNum}")
+	public String getPositionByKakaoApi(@PathVariable String centerNum) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		log.debug("@@ " + methodName + " 실행");
+		
+		String json = searchMapService.getPositionByKakaoApi(centerNum);
+		return json;
+	}
 	
 	
 	
