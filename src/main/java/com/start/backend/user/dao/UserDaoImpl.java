@@ -65,6 +65,14 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
+	@Override
+	public List<User> getUserSearch(String keyword) {
+		
+		List<User> result = session.selectList("User.getUserListByKeyword", keyword);
+		log.debug(result);
+		return result;
+	}
+	
 	
 	
 
@@ -107,6 +115,7 @@ public class UserDaoImpl implements UserDao {
 		session.update("User.updateUser", userId);
 		
 	}
+
 	
 //	@Override
 //	public void deleteUser(String userId) throws Exception {

@@ -30,6 +30,8 @@ public interface UserDao {
 
 	void updateUser(String userId) throws Exception;
 
+	List<User> getUserSearch(String keyword);
+
 //	void deleteUser(String userId) throws Exception;
 
 

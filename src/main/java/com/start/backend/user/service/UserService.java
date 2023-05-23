@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.start.backend.user.vo.User;
+import com.start.backend.user.vo.UserSearch;
 
 public interface UserService {
 
@@ -31,6 +32,9 @@ public interface UserService {
 	User addUser(String userId);
 
 	void updateUser(String userId) throws Exception;
+
+	List<User> getUserSearch(String keyword);
+
 
 //	void deleteUser(String userId) throws Exception;
 

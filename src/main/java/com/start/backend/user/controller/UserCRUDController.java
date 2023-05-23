@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.start.backend.user.vo.User;
+import com.start.backend.user.vo.UserSearch;
 import com.start.backend.user.service.UserService;
 
 
@@ -66,9 +67,9 @@ public class UserCRUDController implements UserController {
 
 	@GetMapping(value="/login")
 	public User login(@ModelAttribute User user) {
-		
-			User loginUser = userService.loginUser(user);
-			log.debug(loginUser);
+		log.debug(user);
+		User loginUser = userService.loginUser(user);
+		log.debug("test" + loginUser);
 		return loginUser;
 	}
 	
@@ -107,6 +108,19 @@ public class UserCRUDController implements UserController {
 		return deleteUser;
 		
 	}
+	
+	
+	@GetMapping(value="/user-search")
+	  public List<User> getUserSearch(String keyword) {
+
+		log.debug("-------- userSerch cont");
+		log.debug(keyword);
+		List<User> getUserSearch = userService.getUserSearch(keyword);
+		log.debug("~~뭐가 들었나~~" + getUserSearch);
+		
+	    return getUserSearch;
+	  }
+	
 	
 //	@GetMapping(value="/login")
 //	public ResponseEntity<String>  login(@ModelAttribute User user) {
