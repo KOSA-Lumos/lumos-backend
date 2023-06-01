@@ -1,5 +1,7 @@
 package com.start.backend.searchMap.controller;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +12,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.start.backend.favorite.service.FavoriteService;
+import com.start.backend.favorite.vo.Favorite;
 import com.start.backend.searchMap.service.SearchMapService;
 import com.start.backend.searchMap.vo.ParamCenterAddress;
 import com.start.backend.searchMap.vo.SearchMap;
+import com.start.backend.user.vo.User;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8079", allowCredentials = "true", allowedHeaders = "Content-Type")
@@ -27,6 +33,8 @@ public class SearchMapControllerImpl implements SearchMapController {
 
 	@Autowired
 	private SearchMapService searchMapService;
+	@Autowired
+	private FavoriteService fvService;
 
 	
 	
@@ -154,6 +162,58 @@ public class SearchMapControllerImpl implements SearchMapController {
 		String json = searchMapService.getPositionByKakaoApi(centerNum);
 		return json;
 	}
+	
+//	@Override
+//	@PostMapping(value="/favorite")
+//	public int addFavorite(@RequestBody Favorite favorite) {
+//		log.debug(favorite);
+////		Favorite favorite = new Favorite();
+////		favorite.setUserId(userId);
+////		favorite.setCenterNum(centerNum);
+//		int result = fvService.addFavorite(favorite);
+//		
+//		return result;
+//	}
+	
+	@Override
+	@PostMapping(value="/favorite")
+	public List<Favorite> isFavorite(@RequestBody Favorite favorite) {
+		log.debug(favorite);
+		
+		List<Favorite> favoriteList = fvService.isFavorite(favorite);
+		log.debug("2"+favorite);
+//		int result = fvService.addFavorite(favorite);
+		
+		if(favoriteList.isEmpty()) {
+			fvService.addFavorite(favorite);
+			log.debug("찜하기");
+		} else {
+			fvService.removeFavorite(favorite);
+			log.debug("찜제거하기");
+			log.debug("3"+favorite);
+		}
+		
+		
+		List<Favorite> newFavoriteList = fvService.isFavorite(favorite);
+		
+		
+		return newFavoriteList;
+	}
+	
+
+
+
+
+
+	@Override
+	public int addFavorite(Favorite favorite) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+
+	
+	
 	
 	
 	

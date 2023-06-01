@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Favorite {
 	
-	private int userNo;
+	private String userId;
 	private int centerNum;
 	
 }

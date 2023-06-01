@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="favorite">
+
+	<update id="insertOne" parameterType="Favorite">
+       <![CDATA[   
+         INSERT favorite_tb(USER_ID, CENTER_NUM)
+         VALUES(#{userId},#{centerNum})
+      ]]>
+   </update>
+   
+   
+    <select id="selectList" parameterType="Favorite" resultType="Favorite">  
+         SELECT *
+         FROM favorite_tb
+         	<choose>
+         		<when test="centerNum != 0">
+         			 WHERE USER_ID=#{userId} AND CENTER_NUM=#{centerNum}
+         		</when>
+         		<when test="centerNum == 0">
+         			 WHERE USER_ID=#{userId}
+         		</when>
+         		<otherwise></otherwise>
+         	</choose>   
+ 	</select>
+ 	
+   
+   <update id="deleteOne" parameterType="Favorite">
+       <![CDATA[   
+         DELETE
+         FROM favorite_tb
+         WHERE USER_ID=#{userId} AND CENTER_NUM=#{centerNum}
+      ]]>
+   </update>
+   
+   
+   <select id="selectFavoriteList" parameterType="Favorite" resultType="Information" >
+   		SELECT c.*
+		FROM center c
+		JOIN FAVORITE_TB f ON c.center_num = f.center_num
+		WHERE f.USER_ID = #{userId};		
+   </select>
+   
+   
+   
+</mapper>

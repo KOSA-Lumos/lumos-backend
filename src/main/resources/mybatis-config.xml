@@ -19,5 +19,6 @@
 	 	<typeAlias type="com.start.backend.searchMap.vo.SMapChildcareViolation" alias="SMapChildcareViolation" />
 	 	<typeAlias type="com.start.backend.searchMap.vo.SMapKidsdataDetail" alias="SMapKidsdataDetail" />
 	 	<typeAlias type="com.start.backend.searchMap.vo.SMapSidocode" alias="SMapSidocode" />
+	 	<typeAlias type="com.start.backend.favorite.vo.Favorite" alias="Favorite" />
 	</typeAliases>
 </configuration>
