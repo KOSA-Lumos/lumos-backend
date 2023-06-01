@@ -1,10 +1,15 @@
 package com.start.backend.searchMap.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.start.backend.favorite.vo.Favorite;
 import com.start.backend.searchMap.vo.ParamCenterAddress;
 import com.start.backend.searchMap.vo.SearchMap;
+import com.start.backend.user.vo.User;
 
 public interface SearchMapController {
 
@@ -21,6 +26,9 @@ public interface SearchMapController {
 
 	public String getKinderDataByApi(@PathVariable String centerNum);
 	public String getPositionByKakaoApi(@PathVariable String centerNum);
+	
+	int addFavorite(@RequestBody Favorite favorite);
+	List<Favorite> isFavorite(@RequestBody Favorite favorite);
 
 //	// PUT methods
 //	String addSearchMap(String searchMap);

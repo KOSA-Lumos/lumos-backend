@@ -7,6 +7,7 @@ package com.start.backend.user.service;
 
 import com.start.backend.user.dao.UserDao;
 import com.start.backend.user.vo.User;
+import com.start.backend.user.vo.UserSearch;
 
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,13 @@ public class UserCRUDService implements UserService {
 		return deleteUser;
 	}
 	
+
+	@Override
+	public List<User> getUserSearch(String keyword) {
+		List<User> getUserSearch = userDao.getUserSearch(keyword);
+		log.debug(getUserSearch);
+		return getUserSearch;
+	}
 	
 	//------------------------------------------------------------
 
@@ -110,6 +118,7 @@ public class UserCRUDService implements UserService {
 		
 		userDao.updateUser(userId);
 	}
+
 
 	
 //	@Transactional

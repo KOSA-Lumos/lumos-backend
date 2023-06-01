@@ -35,7 +35,7 @@
 	<select id="selectLoginUser" parameterType="User" resultMap="userResultSet">
 		SELECT *
 		FROM user_tb
-		WHERE USER_ID = #{userId} and USER_PW = #{userPw}
+		WHERE USER_ID = #{userId} and USER_PW = #{userPw} and STATUS = 'Y'
 	</select>
 	
 	
@@ -55,6 +55,12 @@
 		SET status = 'N'
 		WHERE USER_ID = #{userId}
 	</update>
+	
+	<select id="getUserListByKeyword" parameterType="String" resultMap="userResultSet">
+		SELECT *
+		FROM user_tb
+		WHERE NICKNAME LIKE CONCAT('%', #{keyword}, '%')
+	</select>
 	
 
 

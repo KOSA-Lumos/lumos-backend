@@ -23,6 +23,9 @@ public interface UserController {
 	
 	int deleteUser(String userId) throws Exception;
 	
+	List<User> getUserSearch(String keyword);
+	
+	
 	User addUser(String userId);
 
 //    void updateUser(String userId) throws Exception;
