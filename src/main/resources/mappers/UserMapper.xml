@@ -59,7 +59,7 @@
 	<select id="getUserListByKeyword" parameterType="String" resultMap="userResultSet">
 		SELECT *
 		FROM user_tb
-		WHERE NICKNAME LIKE CONCAT('%', #{keyword}, '%')
+		WHERE USER_ID LIKE CONCAT('%', #{keyword}, '%')
 	</select>
 	
 
