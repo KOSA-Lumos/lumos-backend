@@ -29,6 +29,7 @@ public interface SearchMapController {
 	
 	int addFavorite(@RequestBody Favorite favorite);
 	List<Favorite> isFavorite(@RequestBody Favorite favorite);
+	List<Favorite> removeFavorite(Favorite favorite);
 
 //	// PUT methods
 //	String addSearchMap(String searchMap);
