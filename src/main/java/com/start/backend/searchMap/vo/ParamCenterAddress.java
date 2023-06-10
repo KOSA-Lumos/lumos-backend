@@ -15,5 +15,8 @@ public class ParamCenterAddress {
 	private String centerCity;
 	private Double centerLatitude;
 	private Double centerLongitude;
-	
+	private boolean kidscareOption;
+	private boolean kinderOption;
+	private boolean extendcareOption;
+
 }
